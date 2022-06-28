@@ -25,6 +25,7 @@ use {
 };
 
 use crate::{proxy::*, session::Session};
+use crate::proxy::tls::outbound::dangerous::MockServerVerifier;
 
 pub struct Handler {
     server_name: String,
@@ -67,10 +68,15 @@ impl Handler {
                 );
             }
 
+
             let mut config = ClientConfig::builder()
                 .with_safe_defaults()
                 .with_root_certificates(root_cert_store)
                 .with_no_client_auth();
+
+            // TLS OFF
+            let verifier = Arc::new(MockServerVerifier::default());
+            config.dangerous().set_certificate_verifier(verifier.clone());
 
             for alpn in alpns {
                 config.alpn_protocols.push(alpn.as_bytes().to_vec());
@@ -79,7 +85,7 @@ impl Handler {
                 server_name,
                 tls_config: Arc::new(config),
             })
-        }
+        }.expect("");
         #[cfg(feature = "openssl-tls")]
         {
             {
@@ -159,3 +165,4 @@ impl OutboundStreamHandler for Handler {
         }
     }
 }
+
