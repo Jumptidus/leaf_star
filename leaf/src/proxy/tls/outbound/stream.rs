@@ -85,7 +85,7 @@ impl Handler {
                 server_name,
                 tls_config: Arc::new(config),
             })
-        }.expect("");
+        }
         #[cfg(feature = "openssl-tls")]
         {
             {
