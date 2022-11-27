@@ -16,6 +16,9 @@ mod common;
 fn test_ws_trojan() {
     let config1 = r#"
     {
+        "log": {
+            "level": "debug"
+        },
         "inbounds": [
             {
                 "protocol": "socks",

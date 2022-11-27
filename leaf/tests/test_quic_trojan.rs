@@ -16,6 +16,9 @@ mod common;
 fn test_quic_trojan() {
     let config1 = r#"
     {
+        "log": {
+            "level": "debug"
+        },
         "inbounds": [
             {
                 "protocol": "socks",
@@ -56,6 +59,9 @@ fn test_quic_trojan() {
 
     let config2 = r#"
     {
+        "log": {
+            "level": "debug"
+        },
         "inbounds": [
             {
                 "protocol": "chain",
@@ -96,6 +102,9 @@ fn test_quic_trojan() {
 
     let config3 = r#"
     {
+        "log": {
+            "level": "debug"
+        },
         "inbounds": [
             {
                 "protocol": "socks",
@@ -136,6 +145,9 @@ fn test_quic_trojan() {
 
     let config4 = r#"
     {
+        "log": {
+            "level": "debug"
+        },
         "inbounds": [
             {
                 "protocol": "chain",

@@ -110,7 +110,10 @@ pub async fn new_socks_stream(socks_addr: &str, socks_port: u16, sess: &Session)
         .unwrap();
     timeout(
         Duration::from_secs(2),
-        handler.stream().unwrap().handle(sess, Some(Box::new(stream))),
+        handler
+            .stream()
+            .unwrap()
+            .handle(sess, Some(Box::new(stream))),
     )
     .await
     .unwrap()
@@ -694,6 +697,7 @@ pub fn test_configs(configs: Vec<String>, socks_addr: &str, socks_port: u16) {
             .await
             .unwrap()
             .unwrap();
+        println!("-------> get response: {}", String::from_utf8_lossy(&buf[..n]));
         assert_eq!("abc".to_string(), String::from_utf8_lossy(&buf[..n]));
 
         // Test UDP
@@ -718,6 +722,7 @@ pub fn test_configs(configs: Vec<String>, socks_addr: &str, socks_port: u16) {
             .await
             .unwrap()
             .unwrap();
+        println!("---------------> get udp response: {}", String::from_utf8_lossy(&buf[..n]));
         assert_eq!(msg, &buf[..n]);
         assert_eq!(&raddr, &sess.destination);
 
