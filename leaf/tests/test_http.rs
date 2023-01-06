@@ -1,7 +1,11 @@
 mod common;
 
 // app(socks) -> (socks)client(direct) -> echo
-#[cfg(all(feature = "inbound-http", feature = "outbound-direct",))]
+#[cfg(all(
+    feature = "inbound-http",
+    feature = "inbound-socks",
+    feature = "outbound-direct",
+))]
 #[test]
 fn test_http() {
     use leaf::{start, Config, RuntimeOption, StartOptions};

@@ -1,6 +1,6 @@
 ios:
 	cargo lipo --release -p leaf-ffi
-	cbindgen --config leaf-ffi/cbindgen.toml leaf-ffi/src/lib.rs > target/universal/release/leaf.h
+	cbindgen --config leaf-ffi/cbindgen.toml leaf-ffi/src/lib.rs > target/universal/release/noob.h
 
 ios-dev:
 	cargo lipo -p leaf-ffi
