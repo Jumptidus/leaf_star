@@ -52,7 +52,7 @@ fn to_errno(e: leaf::Error) -> i32 {
 ///                   multi_thread is true.
 /// @return ERR_OK on finish running, any other errors means a startup failure.
 #[no_mangle]
-pub extern "C" fn leaf_run_with_options(
+pub extern "C" fn noob_run_with_options(
     rt_id: u16,
     config_path: *const c_char,
     auto_reload: bool, // requires this parameter anyway
@@ -89,7 +89,7 @@ pub extern "C" fn leaf_run_with_options(
 ///                    or .json, according to the enabled features.
 /// @return ERR_OK on finish running, any other errors means a startup failure.
 #[no_mangle]
-pub extern "C" fn leaf_run(rt_id: u16, config_path: *const c_char) -> i32 {
+pub extern "C" fn noob(rt_id: u16, config_path: *const c_char) -> i32 {
     if let Ok(config_path) = unsafe { CStr::from_ptr(config_path).to_str() } {
         let opts = leaf::StartOptions {
             config: leaf::Config::File(config_path.to_string()),
@@ -107,7 +107,7 @@ pub extern "C" fn leaf_run(rt_id: u16, config_path: *const c_char) -> i32 {
 }
 
 #[no_mangle]
-pub extern "C" fn leaf_run_with_config_string(rt_id: u16, config: *const c_char) -> i32 {
+pub extern "C" fn noob_run_with_config_string(rt_id: u16, config: *const c_char) -> i32 {
     if let Ok(config) = unsafe { CStr::from_ptr(config).to_str() } {
         let opts = leaf::StartOptions {
             config: leaf::Config::Str(config.to_string()),
@@ -130,7 +130,7 @@ pub extern "C" fn leaf_run_with_config_string(rt_id: u16, config: *const c_char)
 ///
 /// @return Returns ERR_OK on success.
 #[no_mangle]
-pub extern "C" fn leaf_reload(rt_id: u16) -> i32 {
+pub extern "C" fn noob_reload(rt_id: u16) -> i32 {
     if let Err(e) = leaf::reload(rt_id) {
         return to_errno(e);
     }
@@ -143,7 +143,7 @@ pub extern "C" fn leaf_reload(rt_id: u16) -> i32 {
 ///
 /// @return Returns true on success, false otherwise.
 #[no_mangle]
-pub extern "C" fn leaf_shutdown(rt_id: u16) -> bool {
+pub extern "C" fn noob_shutdown(rt_id: u16) -> bool {
     leaf::shutdown(rt_id)
 }
 
