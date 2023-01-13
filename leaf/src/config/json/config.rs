@@ -252,6 +252,7 @@ pub fn to_internal(json: &mut Config) -> Result<internal::Config> {
         }
 
         if let Some(ext_output) = &ext_log.output {
+
             match ext_output.as_str() {
                 "console" => log.output = internal::Log_Output::CONSOLE,
                 _ => {

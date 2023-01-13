@@ -34,6 +34,7 @@ fn test_trojan() {
 
     let config2 = r#"
     {
+
         "inbounds": [
             {
                 "protocol": "trojan",

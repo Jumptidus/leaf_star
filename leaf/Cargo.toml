@@ -20,9 +20,9 @@ default-ring = [
     "ring-aead",
     "rustls-tls",
     # quinn supports only rustls as tls backend for now
-    "inbound-quic",
-    "outbound-quic",
-    "api",
+    #"inbound-quic",
+    #"outbound-quic",
+    #"api",
     "stat",
     # "plugin",
 ]
@@ -41,32 +41,32 @@ all-configs = [
 ]
 all-endpoints = [
     # inbounds
-    "inbound-chain",
-    "inbound-amux",
+    #"inbound-chain",
+    #"inbound-amux",
     # "inbound-quic",
-    "inbound-ws",
-    "inbound-tls",
-    "inbound-trojan",
-    # "inbound-http",
-    "inbound-shadowsocks",
-    "inbound-socks",
+    #"inbound-ws",
+    #"inbound-tls",
+    #"inbound-trojan",
+    #"inbound-http",
+    #"inbound-shadowsocks",
+    #"inbound-socks",
     "inbound-tun",
     # outbounds
     "outbound-direct",
-    "outbound-drop",
+    #"outbound-drop",
     "outbound-redirect",
-    "outbound-shadowsocks",
-    "outbound-socks",
+    #"outbound-shadowsocks",
+    #"outbound-socks",
     "outbound-trojan",
-    "outbound-tls",
-    "outbound-ws",
-    "outbound-amux",
-    "outbound-vmess",
+    #"outbound-tls",
+    #"outbound-ws",
+    #"outbound-amux",
+    #"outbound-vmess",
     # "outbound-quic",
-    "outbound-failover",
-    "outbound-static",
-    "outbound-tryall",
-    "outbound-chain",
+    #"outbound-failover",
+    #"outbound-static",
+    #"outbound-tryall",
+    #"outbound-chain",
     # "outbound-select",
 ]
 
@@ -88,7 +88,7 @@ outbound-drop = []
 outbound-redirect = []
 outbound-shadowsocks = ["hkdf", "sha-1", "md-5", "tokio-util"]
 outbound-socks = ["async-socks5"]
-outbound-trojan = ["sha2", "hex"]
+outbound-trojan = ["sha2", "hex", "rustls"]
 outbound-tls = []
 outbound-ws = ["tungstenite", "tokio-tungstenite", "url", "http"]
 outbound-failover = ["lru_time_cache"]

@@ -55,8 +55,8 @@ pub struct Handler;
 
 #[async_trait]
 impl InboundStreamHandler for Handler {
-    async fn handle<'a>(
-        &'a self,
+    async fn handle(
+        &self,
         mut sess: Session,
         stream: Box<dyn ProxyStream>,
     ) -> std::io::Result<InboundTransport> {
